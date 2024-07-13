@@ -17,7 +17,7 @@ const Navigation = ({ user }: Props) => {
           src={'./assets/saver-logo.svg'}
           width={40}
           height={40}
-          alt="plur logo"
+          alt="saver logo"
         />
         <span className="text-xl font-bold"> Saver.</span>
       </aside>
