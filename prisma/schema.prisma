@@ -165,7 +165,7 @@ model Lane {
   name       String
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  Pipeline   Pipeline @relation(fields: [pipelineId], references: [id], onDelete: Cascade)
+  Pipeline   Pipeline @relation(fields: [pipelineId], references: [id],onDelete: Cascade )
   pipelineId String
   Tickets    Ticket[]
   order      Int      @default(0)
