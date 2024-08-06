@@ -8,7 +8,7 @@ const authenticateUser = async (): Promise<ValidMiddlewareObject> => {
     const { isAuthenticated, user } = Authentication();
   
     if (!isAuthenticated) {
-      throw new Error('Unauthorized');
+      throw new Error('Unauthorized'); // not allowed
     }
   
     return { user };
@@ -18,7 +18,7 @@ const authenticateUser = async (): Promise<ValidMiddlewareObject> => {
 export const ourFileRouter = {
   // Define as many FileRoutes as you like, each with a unique routeSlug
   subaccountLogo: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
-    .middleware(authenticateUser)
+    .middleware(authenticateUser) // autheyticate user setup as middleware
     .onUploadComplete(() => {}),
   avatar: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
     .middleware(authenticateUser)

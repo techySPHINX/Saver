@@ -30,12 +30,12 @@ export default clerkMiddleware(async (auth, req) => {
   }
 
   if (url.pathname.startsWith('/agency') || url.pathname.startsWith('/subaccount')) {
-    return NextResponse.rewrite(new URL(`${pathWithSearchParams}`, req.url))
+    return NextResponse.rewrite(new URL(`${pathWithSearchParams}`, req.url)) // other cases satisfied
   }
 
   // No rewrite or redirect for other routes (implicit return)
 })
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'], // should not matches these matchers
 }
