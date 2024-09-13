@@ -37,7 +37,7 @@ export default function RootLayout({
             {children}
             <Toaster />
             <SonnarToaster position="bottom-left" />
-          {/* </ModalProvider> */}
+          {/* </ModalProvider> */} 
         </ThemeProvider>
       </body>
     </html>

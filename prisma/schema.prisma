@@ -283,7 +283,7 @@ model Media {
   updatedAt    DateTime   @updatedAt
   Subaccount   SubAccount @relation(fields: [subAccountId], references: [id], onDelete: Cascade)
 
-  @@index([subAccountId]) // index are made for linking with key pairs
+  @@index([subAccountId]) 
 }
 
 model Funnel {

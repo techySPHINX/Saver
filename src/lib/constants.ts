@@ -15,11 +15,9 @@ import Message from '@/components/icons/messages'
 import Notification from '@/components/icons/notification'
 import Payment from '@/components/icons/payment'
 import Person from '@/components/icons/person'
-import Pipelines from '@/components/icons/pipelines'
 import PluraCategory from '@/components/icons/plura-category'
 import Power from '@/components/icons/power'
 import Receipt from '@/components/icons/receipt'
-import Send from '@/components/icons/send'
 import Settings from '@/components/icons/settings'
 import Shield from '@/components/icons/shield'
 import Star from '@/components/icons/star'
@@ -74,7 +72,7 @@ export const icons = [
     path: Headphone,
   },
   {
-  {
+  
     value: 'calendar',
     label: 'Calendar',
     path: Calendar,
