@@ -1,9 +1,6 @@
 import { authMiddleware } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 
-// This example protects all routes including api/trpc routes
-// Please edit this to allow other routes to be public as needed.
-// See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
   publicRoutes: ['/site', '/api/uploadthing'],
   async beforeAuth(_auth: any, req: any) {},
@@ -17,7 +14,6 @@ export default authMiddleware({
       searchParams.length > 0 ? `?${searchParams}` : ''
     }`
 
-    //if subdomain exists
     const customSubDomain = hostname
       .get('host')
       ?.split(`${process.env.NEXT_PUBLIC_DOMAIN}`)
