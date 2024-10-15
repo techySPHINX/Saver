@@ -51,13 +51,14 @@ export default async function Home() {
           {" you're"} not <br />
           ready to commit you can get started for free.
         </p>
-        {pricingCards.map((card) => (
+        <div className="flex flex-wrap justify-center gap-4">
+          {pricingCards.map((card) => (
           //WIP: Wire up free product from stripe
           <Card
             key={card.title}
-          // className={clsx('w-[300px] flex flex-col justify-between', {
-          //   'border-2 border-primary': card.nickname === 'Unlimited Saas',
-          // })}
+          className={clsx('w-[300px] flex flex-col justify-between', {
+            'border-2 border-primary': card.title === 'Unlimited Saas',
+          })}
           >
 
             <CardHeader>
@@ -100,7 +101,7 @@ export default async function Home() {
                   ))}
               </div>
               <Link
-                href={`/agency?plan=${card.id}`}
+                href={`/agency`}
                 className={clsx(
                   'w-full text-center bg-primary p-2 rounded-md',
                   {
@@ -114,6 +115,7 @@ export default async function Home() {
             </CardFooter>
           </Card>
         ))}
+        </div>
       </section>
     </>
   )
