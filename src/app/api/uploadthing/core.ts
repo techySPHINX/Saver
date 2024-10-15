@@ -1,21 +1,20 @@
-import { createUploadthing, type FileRouter } from 'uploadthing/next';
-import  { Authentication } from './useAuthentication';
-import { ValidMiddlewareObject } from 'uploadthing/internal/types';
+import { createUploadthing, type FileRouter } from 'uploadthing/next'
+import { auth } from '@clerk/nextjs'
 
-const f = createUploadthing();
+const f = createUploadthing()
 
-const authenticateUser = async (): Promise<ValidMiddlewareObject> => {
-    const { isAuthenticated, user } = Authentication();
-  
-    if (!isAuthenticated) {
-      throw new Error('Unauthorized');
-    }
-    return { user };
-  };
-  
+const authenticateUser = () => {
+  const user = auth()
+  if (!user) throw new Error('Unauthorized')
+  // Whatever is returned here is accessible in onUploadComplete as `metadata`
+  return user
+}
+
+// FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
+  // Define as many FileRoutes as you like, each with a unique routeSlug
   subaccountLogo: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
-    .middleware(authenticateUser) 
+    .middleware(authenticateUser)
     .onUploadComplete(() => {}),
   avatar: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
     .middleware(authenticateUser)
@@ -26,8 +25,6 @@ export const ourFileRouter = {
   media: f({ image: { maxFileSize: '4MB', maxFileCount: 1 } })
     .middleware(authenticateUser)
     .onUploadComplete(() => {}),
-} satisfies FileRouter;
+} satisfies FileRouter
 
-export type OurFileRouter = typeof ourFileRouter;
-
-
+export type OurFileRouter = typeof ourFileRouter

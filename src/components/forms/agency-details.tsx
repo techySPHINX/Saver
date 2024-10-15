@@ -122,45 +122,46 @@ const AgencyDetails = ({ data }: Props) => {
           },
         }
 
-        const customerResponse = await fetch('/api/stripe/create-customer', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(bodyData),
-        })
-        const customerData: { customerId: string } =
-          await customerResponse.json()
-        custId = customerData.customerId
-      }
+        //   const customerResponse = await fetch('/api/stripe/create-customer', {
+        //     method: 'POST',
+        //     headers: {
+        //       'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(bodyData),
+        //   })
+        //   const customerData: { customerId: string } =
+        //     await customerResponse.json()
+        //   custId = customerData.customerId
+        // }
 
-      newUserData = await initUser({ role: 'AGENCY_OWNER' })
-      if (!data?.customerId && !custId) return
+        newUserData = await initUser({ role: 'AGENCY_OWNER' })
+        if (!data?.id) {
 
-    //   const response = await upsertAgency({
-    //      id: data?.id ? data.id: v4(),
-    //     customerId: data?.customerId || custId || '',
-    //     address: values.address,
-    //     agencyLogo: values.agencyLogo,
-    //     city: values.city,
-    //     companyPhone: values.companyPhone,
-    //     country: values.country,
-    //     name: values.name,
-    //     state: values.state,
-    //     whiteLabel: values.whiteLabel,
-    //     zipCode: values.zipCode,
-    //     createdAt: new Date(),
-    //     updatedAt: new Date(),
-    //     companyEmail: values.companyEmail,
-    //     connectAccountId: '',
-    //     goal: 5,
-    //   })
-      toast({
-        title: 'Created Agency',
-      })
-      if (data?.id) return router.refresh() //refresh function to be overloaded
-      if (Response) {
-        return router.refresh()
+          await upsertAgency({
+            id: data?.id ? data.id : v4(),
+            address: values.address,
+            agencyLogo: values.agencyLogo,
+            city: values.city,
+            companyPhone: values.companyPhone,
+            country: values.country,
+            name: values.name,
+            state: values.state,
+            whiteLabel: values.whiteLabel,
+            zipCode: values.zipCode,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            companyEmail: values.companyEmail,
+            connectAccountId: '',
+            goal: 5,
+          })
+          toast({
+            title: 'Created Agency',
+          })
+          // if (data?.id) return router.refresh() //refresh function to be overloaded
+
+          return router.refresh()
+
+        }
       }
     } catch (error) {
       console.log(error)
@@ -420,7 +421,7 @@ const AgencyDetails = ({ data }: Props) => {
                     placeholder="Sub Account Goal"
                   />
                 </div>
-               )}
+              )}
               <Button
                 type="submit"
                 disabled={isLoading}

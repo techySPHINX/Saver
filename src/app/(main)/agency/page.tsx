@@ -1,5 +1,3 @@
-
-
 import AgencyDetails from '@/components/forms/agency-details'
 import { getAuthUserDetails, verifyAndAcceptInvitation } from '@/lib/queries'
 import { currentUser } from '@clerk/nextjs/server'
