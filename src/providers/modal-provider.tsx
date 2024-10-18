@@ -11,11 +11,6 @@ export type ModalData = {
   user?: User
   agency?: Agency
   ticket?: TicketDetails[0]
-  contact?: Contact
-  plans?: {
-    defaultPriceId: Plan
-    plans: PricesList['data']
-  }
 }
 type ModalContextType = {
   data: ModalData
@@ -47,8 +42,7 @@ const ModalProvider: React.FC<ModalProviderProps> = ({ children }) => {
   ) => {
     if (modal) {
       if (fetchData) {
-        const fetchedData = await fetchData();
-        setData({ ...data, ...(fetchedData ? fetchedData : {}) })
+        setData({ ...data, ...(await fetchData()) })
       }
       setShowingModal(modal)
       setIsOpen(true)
