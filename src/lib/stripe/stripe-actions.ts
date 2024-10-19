@@ -10,7 +10,7 @@ export const subscriptionCreated = async (
   try {
     const agency = await db.agency.findFirst({
       where: {
-        customerId,
+        customerId: customerId, // This is the customer id from stripe
       },
       include: {
         SubAccount: true,
